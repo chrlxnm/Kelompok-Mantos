@@ -1,13 +1,34 @@
-import { Breadcrumb, Card, Col, Pagination, Row } from "antd";
+import { Breadcrumb, Button, Card, Col, Pagination, Row } from "antd";
 
-import { DUMMY_LIST } from './../../helpers/constant';
-import { GlobalWrapper } from './../../components/Wrapper/index';
-import React from 'react';
-import styled from 'styled-components';
+import { DUMMY_LIST } from "./../../helpers/constant";
+import React, { Fragment, useEffect } from "react";
+import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { fetchUnits } from "../../redux/reducer/unitsReducer";
+import { GlobalWrapper } from "./../../components/Wrapper/index";
 
 const { Meta } = Card;
 
 const Home = (props) => {
+  const state = useSelector((storedState) => storedState.unit);
+  console.log("Ini state: ", state);
+  const dispatch = useDispatch();
+  //const navigate = useNavigate();
+
+  // const handlePagee = () => {
+  //   navigate("form");
+  // };
+
+  useEffect(() => {
+    dispatch(fetchUnits());
+  }, [dispatch, state.action]);
+
+  // if (state.isLoading) {
+  //   return <p>Loading units...</p>;
+  // } else if (!state.isLoading && !Array.isArray(state.units)) {
+  //   return <p>guests not found</p>;
+  // } else {
   return (
     <>
       <Breadcrumb
@@ -17,14 +38,14 @@ const Home = (props) => {
       >
         <Breadcrumb.Item>Home</Breadcrumb.Item>
         <Breadcrumb.Item>List</Breadcrumb.Item>
-        <Breadcrumb.Item>App</Breadcrumb.Item>
+        <Breadcrumb.Item>unitsReducer</Breadcrumb.Item>
       </Breadcrumb>
       <GlobalWrapper>
         <h1 className="justify-content-center align-items-center">
-          Apartment List
+          Apartment Units
         </h1>
         <Row gutter={16}>
-          {DUMMY_LIST.map((item, idx) => (
+          {state?.units?.map((item, idx) => (
             <Col
               xs={24}
               sm={24}
@@ -48,6 +69,8 @@ const Home = (props) => {
                   title="Apartment Unit"
                   description="Apartment Detail Desc"
                 />
+                <Button variant="primary">Check in</Button>{" "}
+                <Button variant="warning">Check out</Button>
               </Card>
             </Col>
           ))}
@@ -61,6 +84,7 @@ const Home = (props) => {
       </GlobalWrapper>
     </>
   );
+  //}
 };
 
 export default Home;

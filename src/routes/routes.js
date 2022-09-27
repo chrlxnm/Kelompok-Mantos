@@ -1,7 +1,9 @@
 import App from "./../App";
 import Home from "./../pages/Home/index";
 import LoginPage from "../pages/LoginPage/LoginForm";
-import Report from './../pages/Report/index';
+import { Provider } from "react-redux";
+import store from "../redux/store";
+import Report from "./../pages/Report/index";
 import { createBrowserRouter } from "react-router-dom";
 
 function Protect({ children }) {
@@ -21,7 +23,11 @@ export const routes = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Home />,
+        element: (
+          <Provider store={store}>
+            <Home />
+          </Provider>
+        ),
       },
       {
         path: "/login",
