@@ -1,6 +1,11 @@
+import { configureStore } from "@reduxjs/toolkit";
 import { createStore } from "redux";
-import { lockerReducer } from "../reducer/lockerReducer";
+import { unitsSlice } from "../reducer/unitsReducer";
 
-const store = createStore(lockerReducer);
+const store = configureStore({
+  reducer: {
+    unit: unitsSlice.reducer,
+  },
+});
 
 export default store;
