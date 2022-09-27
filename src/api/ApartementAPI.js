@@ -1,0 +1,1 @@
+const apiApartementURL = "http://localhost:334/apartement";
