@@ -15,6 +15,7 @@
     "antd": "^4.23.2",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.1",
+    "encrypt-storage": "^2.12.8",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",

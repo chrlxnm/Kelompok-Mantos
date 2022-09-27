@@ -26,6 +26,14 @@ export const routes = createBrowserRouter([
         path: "/login",
         element: <LoginPage />,
       },
+      {
+        path: "/report",
+        element: <LoginPage />,
+      },
+      {
+        path: "/transaction",
+        element: <LoginPage />,
+      },
     ],
   },
 ]);

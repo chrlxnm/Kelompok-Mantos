@@ -14,6 +14,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import { saveToken } from './../../helpers/utils';
 
 function Copyright(props) {
   return (
@@ -43,6 +44,7 @@ export default function LoginPage() {
       email: data.get("email"),
       password: data.get("password"),
     });
+    saveToken('YWRtaW46YWRtaW4=');
   };
 
   return (
