@@ -44,8 +44,8 @@ const Home = (props) => {
                 }
               >
                 <Meta
-                  title="Europe Street beat"
-                  description="www.instagram.com"
+                  title="Apartment Unit"
+                  description="Apartment Detail Desc"
                 />
               </Card>
             </Col>
