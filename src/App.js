@@ -1,9 +1,9 @@
 import './App.css';
 
 import { Breadcrumb, Layout, Menu } from 'antd';
+import { Outlet, redirect } from 'react-router-dom';
 
-import HelloWorld from './pages/HelloWorld';
-import { Outlet } from 'react-router-dom';
+import PrivateRoute from './components/privateRoute/index';
 import logo from './logo.svg';
 
 const { Header, Content, Footer } = Layout;
@@ -13,10 +13,12 @@ function App() {
     {
     key: 'home',
     label: 'Home',
+    onClick: ()=> redirect('/'),
     },
     {
     key: 'report',
-    label: 'Report'
+    label: 'Report',
+    onClick: ()=> console.log('hehehe'),
     }
 ]
   return (
@@ -26,16 +28,8 @@ function App() {
         <Menu
           theme="dark"
           mode="horizontal"
-          defaultSelectedKeys={['2']}
-          items={items
-          //   new Array(15).fill(null).map((_, index) => {
-          //   const key = index + 1;
-          //   return {
-          //     key,
-          //     label: `nav ${key}`,
-          //   };
-          // })
-        }
+          defaultSelectedKeys={['report']}
+          items={items}
         />
       </Header>
       <Content
@@ -43,7 +37,7 @@ function App() {
           padding: '0 50px',
         }}
       >
-        <Outlet /> 
+        <PrivateRoute /> 
       </Content>
       <Footer
         style={{

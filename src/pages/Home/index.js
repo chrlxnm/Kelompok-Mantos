@@ -1,6 +1,7 @@
 import { Breadcrumb, Card, Col, Pagination, Row } from 'antd';
 
 import { DUMMY_LIST } from './../../helpers/constant';
+import { GlobalWrapper } from './../../components/Wrapper/index';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -40,7 +41,3 @@ const Home = (props) => {
 };
 
 export default Home;
-
-const GlobalWrapper = styled.div`
-  min-height: 80vh;
-`
