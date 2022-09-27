@@ -1,9 +1,26 @@
 import { LogoutOutlined } from "@ant-design/icons";
 import "./App.css";
 import { Breadcrumb, Button, Col, Layout, Menu } from "antd";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
+import { useCallback } from "react";
 
 const { Header, Content, Footer } = Layout;
+
+export function Logout() {
+  const navigate = useNavigate();
+  const handleOnClick = useCallback(
+    () => navigate("/login", { replace: true }),
+    [navigate]
+  );
+
+  return (
+    <Col xs={{ span: 11, offset: 1 }} lg={{ span: 6, offset: 2 }}>
+      <Button type="danger" shape="round" onClick={handleOnClick}>
+        Logout
+      </Button>
+    </Col>
+  );
+}
 
 function App() {
   const items = [
@@ -35,11 +52,7 @@ function App() {
             // })
           }
         />
-        <Col xs={{ span: 11, offset: 1 }} lg={{ span: 6, offset: 2 }}>
-          <Button type="danger" shape="round">
-            Logout
-          </Button>
-        </Col>
+        <Logout />
       </Header>
       <Content
         style={{
