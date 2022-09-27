@@ -6,11 +6,12 @@ import LoginPage from './../../pages/LoginPage/LoginForm';
 const PrivateRoute = () => {
 
     const token = localStorage.getItem('loginToken');
+    console.log('test', token)
     useEffect(()=> {
 
-    },[token])
+    },[localStorage.getItem('loginToken')])
     return (
-            token? <Outlet /> : <LoginPage />
+            token?.length? <Outlet /> : <LoginPage />
     )
 };
 

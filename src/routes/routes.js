@@ -1,6 +1,7 @@
 import App from "./../App";
 import Home from "./../pages/Home/index";
 import LoginPage from "../pages/LoginPage/LoginForm";
+import Report from './../pages/Report/index';
 import { createBrowserRouter } from "react-router-dom";
 
 function Protect({ children }) {
@@ -28,7 +29,7 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/report",
-        element: <LoginPage />,
+        element: <Report />,
       },
       {
         path: "/transaction",

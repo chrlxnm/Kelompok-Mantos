@@ -1,20 +1,25 @@
 import './App.css';
 import "./App.css";
 
-import { Breadcrumb, Button, Col, Layout, Menu } from "antd";
+import { Breadcrumb, Button, Col, Layout } from "antd";
 import { Outlet, useNavigate } from "react-router-dom";
+import { useCallback, useState } from "react";
 
 import { LogoutOutlined } from "@ant-design/icons";
 import PrivateRoute from './components/privateRoute/index';
+import { handleLogout } from './helpers/utils';
 import logo from './logo.svg';
-import { useCallback } from "react";
+import styled from 'styled-components';
 
 const { Header, Content, Footer } = Layout;
 
 export function Logout() {
   const navigate = useNavigate();
   const handleOnClick = useCallback(
-    () => navigate("/login", { replace: true }),
+    () => {
+      handleLogout();
+      navigate("/login", { replace: true })
+    },
     [navigate]
   );
 
@@ -29,29 +34,21 @@ export function Logout() {
 }
 
 function App() {
-  const items = [
-    {
-    key: 'home',
-    label: 'Home',
-    },
-    {
-    key: 'report',
-    label: 'Report',
-    onClick: ()=> console.log('hehehe'),
-    }
-]
+
+  const [activeMenu, setActiveMenu] = useState('home');
+
   return (
     <Layout className="App layout">
-      {window.location.pathname !=='/login' && <Header>
+      {/* {window.location.pathname !=='/login' && <Header> */}
         <div className="logo" />
         <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={['report']}
-          items={items}
-        />
-        <Logout />
-      </Header>}
+        >
+          <MenuItem active={activeMenu==='home'} onClick={()=>setActiveMenu('home')} key="Home">Home</MenuItem>
+          <MenuItem active={activeMenu==='report'} onClick={()=>setActiveMenu('report')} key="Report">Report</MenuItem>
+          <MenuItem active={activeMenu==='transactions'} onClick={()=>setActiveMenu('transactions')} key="Transactions">Transactions</MenuItem>              
+          <Logout />
+        </Menu>
+      {/* </Header>} */}
       <Content
         style={{
           padding: "0 50px",
@@ -73,3 +70,24 @@ function App() {
 }
 
 export default App;
+
+const Menu = styled.div`
+  width: 100%;
+  background-color: #001529;
+  display: flex;
+  height: 50px;
+  padding: 0rem 1rem;
+  align-items: center;
+`
+const MenuItem = styled.div`
+  color: #ffffff;
+  cursor: pointer;
+  padding: 0 1rem;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  background-color: ${({ active }) => active? '#096dd9' : null };
+  &:hover{
+    background-color: #40a9ff;
+  }
+`
