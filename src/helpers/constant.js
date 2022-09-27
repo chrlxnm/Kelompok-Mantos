@@ -100,3 +100,5 @@ export const DUMMY_LIST = [
     sellPrice: 2000000,
   },
 ];
+
+export const URL_PREFIX = "http://localhost:3344/final/";

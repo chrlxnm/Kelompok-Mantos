@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { fetchUnits } from "../../redux/reducer/unitsReducer";
+import { GlobalWrapper } from "./../../components/Wrapper/index";
 
 const { Meta } = Card;
 
@@ -44,7 +45,7 @@ const Home = (props) => {
           Apartment Units
         </h1>
         <Row gutter={16}>
-          {state.units.map((item, idx) => (
+          {state?.units?.map((item, idx) => (
             <Col
               xs={24}
               sm={24}
@@ -87,7 +88,3 @@ const Home = (props) => {
 };
 
 export default Home;
-
-const GlobalWrapper = styled.div`
-  min-height: 80vh;
-`;
