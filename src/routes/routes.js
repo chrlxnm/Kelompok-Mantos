@@ -1,28 +1,31 @@
-import App from './../App';
-import Home from './../pages/Home/index';
-import Login from './../components/login/LoginForm';
-import LoginPage from './../pages/LoginPage/index';
-import Report from './../pages/Report/index';
-import { createBrowserRouter } from 'react-router-dom';
+import App from "./../App";
+import Home from "./../pages/Home/index";
+import LoginPage from "../pages/LoginPage/LoginForm";
+import { createBrowserRouter } from "react-router-dom";
+
+function Protect({ children }) {
+  const redirect = true;
+
+  if (redirect) {
+    redirect("/login");
+  }
+
+  return children;
+}
 
 export const routes = createBrowserRouter([
-    {
-        path: '/',
-        element: <App />,
-        children: [
-            {
-                path: '',
-                element: 
-                    <Home />
-            },
-            {
-                path: '/login',
-                element: <Login />
-            },
-            {
-                path: '/report',
-                element: <Report />
-            },
-        ]
-    }
-])
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "",
+        element: <Home />,
+      },
+      {
+        path: "/login",
+        element: <LoginPage />,
+      },
+    ],
+  },
+]);
